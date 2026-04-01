@@ -1,20 +1,19 @@
-import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 export default function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    document.title = `Count: ${count}`;
-    console.log("Count changed!");
-  }, [count]);
-
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h2>Counter App</h2>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>
-        Increase
-      </button>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
